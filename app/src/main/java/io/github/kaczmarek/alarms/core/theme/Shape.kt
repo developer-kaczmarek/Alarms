@@ -1,4 +1,4 @@
-package io.github.kaczmarek.alarms.ui.theme
+package io.github.kaczmarek.alarms.core.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
