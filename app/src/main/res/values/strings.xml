@@ -3,4 +3,12 @@
 
     <!-- Errors -->
     <string name="error_unexpected_with_description">Произошла какая-то ошибка. Разработчику уже исправляют проблему. %s</string>
+
+    <!-- Reminder -->
+    <string name="reminder_title_hint">Заголовок напоминания</string>
+    <string name="reminder_description_hint">Описание</string>
+    <string name="reminder_set_reminder">Установить напоминание</string>
+    <string name="reminder_work_manager">Work Manager</string>
+    <string name="reminder_alarm_manager">Alarm Manager</string>
+    <string name="reminder_field_is_blank_error_message">Пожалуйста, заполните это поле</string>
 </resources>
