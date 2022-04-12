@@ -11,6 +11,10 @@
     <string name="reminder_delete_reminders">Удалить все напоминания</string>
     <string name="reminder_field_is_blank_error_message">Пожалуйста, заполните это поле</string>
 
+    <!-- Menu -->
+    <string name="menu_set_schedule">Установить расписание</string>
+    <string name="menu_set_reminder">Установить напоминание</string>
+
     <!-- Notification channel -->
     <string name="alarms_channel_id" translatable="false">alarms_channel_id</string>
     <string name="alarms_channel_name">Канал уведомлений</string>

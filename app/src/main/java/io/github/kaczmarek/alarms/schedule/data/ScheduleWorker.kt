@@ -1,4 +1,4 @@
-package io.github.kaczmarek.alarms.reminder.data
+package io.github.kaczmarek.alarms.schedule.data
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -10,7 +10,7 @@ import androidx.work.Worker
 import androidx.work.WorkerParameters
 import io.github.kaczmarek.alarms.R
 
-class ReminderWorker(
+class ScheduleWorker(
     private val context: Context,
     workerParams: WorkerParameters
 ) : Worker(context, workerParams) {
