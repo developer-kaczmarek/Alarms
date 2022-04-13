@@ -2,20 +2,18 @@ package io.github.kaczmarek.alarms.schedule.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import io.github.kaczmarek.alarms.R
 import io.github.kaczmarek.alarms.core.theme.AppTheme
+import io.github.kaczmarek.alarms.core.widget.CommonButton
 import io.github.kaczmarek.alarms.core.widget.CommonTextField
 import me.aartikov.sesame.compose.form.control.InputControl
 
@@ -40,45 +38,25 @@ fun ScheduleUi(
 
             CommonTextField(
                 component.descriptionInput,
-                stringResource(id = R.string.reminder_description_hint)
+                stringResource(id = R.string.common_description_hint)
             )
 
             Row(
                 modifier = Modifier.fillMaxSize(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                ScheduleButton(
-                    text = stringResource(R.string.reminder_set_reminder),
-                    onClick = component::onSetReminderClick,
-                    enabled = component.setReminderButtonEnabled
+                CommonButton(
+                    text = stringResource(R.string.schedule_set_schedule),
+                    onClick = component::onSetScheduleClick,
+                    enabled = component.setScheduleButtonEnabled
                 )
 
-                ScheduleButton(
-                    text = stringResource(R.string.reminder_delete_reminders),
-                    onClick = component::onDeleteRemindersClick,
-                    enabled = true
+                CommonButton(
+                    text = stringResource(R.string.schedule_delete_schedule),
+                    onClick = component::onDeleteSchedulesClick
                 )
             }
         }
-    }
-}
-
-@Composable
-fun RowScope.ScheduleButton(
-    text: String,
-    onClick: () -> Unit,
-    enabled: Boolean,
-    modifier: Modifier = Modifier
-) {
-    Button(
-        modifier = modifier.weight(1f),
-        onClick = onClick,
-        enabled = enabled
-    ) {
-        Text(
-            text = text.uppercase(),
-            textAlign = TextAlign.Center
-        )
     }
 }
 
@@ -99,9 +77,9 @@ class FakeScheduleComponent : ScheduleComponent {
     override val descriptionInput = InputControl(
         keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words)
     )
-    override val setReminderButtonEnabled = false
+    override val setScheduleButtonEnabled = false
 
-    override fun onDeleteRemindersClick() = Unit
+    override fun onDeleteSchedulesClick() = Unit
 
-    override fun onSetReminderClick() = Unit
+    override fun onSetScheduleClick() = Unit
 }

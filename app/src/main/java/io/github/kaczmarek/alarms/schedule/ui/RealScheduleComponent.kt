@@ -42,21 +42,21 @@ class RealScheduleComponent(
         )
 
         input(titleInput) {
-            isNotBlank(R.string.reminder_field_is_blank_error_message)
+            isNotBlank(R.string.error_field_is_blank_error_message)
         }
 
         input(descriptionInput) {
-            isNotBlank(R.string.reminder_field_is_blank_error_message)
+            isNotBlank(R.string.error_field_is_blank_error_message)
         }
     }
 
     private val dynamicResult by coroutineScope.dynamicValidationResult(formValidator)
 
-    override val setReminderButtonEnabled by derivedStateOf {
+    override val setScheduleButtonEnabled by derivedStateOf {
         dynamicResult.isValid
     }
 
-    override fun onSetReminderClick() {
+    override fun onSetScheduleClick() {
         safeRun(errorHandler) {
             setScheduleInteractor.execute(
                 title = titleInput.text,
@@ -68,7 +68,7 @@ class RealScheduleComponent(
         }
     }
 
-    override fun onDeleteRemindersClick() {
+    override fun onDeleteSchedulesClick() {
         safeRun(errorHandler) {
             deleteSchedulesInteractor.execute()
         }

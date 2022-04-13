@@ -1,22 +1,31 @@
 <resources>
     <string name="app_name">Alarms</string>
+    <string name="common_description_hint">Описание</string>
 
     <!-- Errors -->
     <string name="error_unexpected_with_description">Произошла какая-то ошибка. Разработчику уже исправляют проблему. %s</string>
+    <string name="error_field_is_blank_error_message">Пожалуйста, заполните это поле</string>
 
     <!-- Reminder -->
     <string name="reminder_title_hint">Заголовок напоминания</string>
-    <string name="reminder_description_hint">Описание</string>
     <string name="reminder_set_reminder">Установить напоминание</string>
-    <string name="reminder_delete_reminders">Удалить все напоминания</string>
-    <string name="reminder_field_is_blank_error_message">Пожалуйста, заполните это поле</string>
+    <string name="reminder_delete_reminder">Удалить напоминание</string>
+    <string name="reminder_settings_time">Настройки времени</string>
+    <string name="reminder_reminder_name">Напоминание</string>
+    <string name="reminder_selected_date">Выбрать дату</string>
+    <string name="reminder_selected_time">Выбрать время</string>
 
     <!-- Menu -->
     <string name="menu_set_schedule">Установить расписание</string>
     <string name="menu_set_reminder">Установить напоминание</string>
 
+    <!-- Schedule -->
+    <string name="schedule_title_hint">Заголовок расписания</string>
+    <string name="schedule_set_schedule">Установить расписание</string>
+    <string name="schedule_delete_schedule">Удалить расписание</string>
+
     <!-- Notification channel -->
     <string name="alarms_channel_id" translatable="false">alarms_channel_id</string>
     <string name="alarms_channel_name">Канал уведомлений</string>
-    <string name="alarms_channel_description">Показывает напоминание</string>
+    <string name="alarms_channel_description">Показывает напоминания и расписания</string>
 </resources>

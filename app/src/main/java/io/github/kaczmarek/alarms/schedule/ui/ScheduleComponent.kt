@@ -8,9 +8,9 @@ interface ScheduleComponent {
 
     val descriptionInput: InputControl
 
-    val setReminderButtonEnabled: Boolean
+    val setScheduleButtonEnabled: Boolean
 
-    fun onSetReminderClick()
+    fun onSetScheduleClick()
 
-    fun onDeleteRemindersClick()
+    fun onDeleteSchedulesClick()
 }
