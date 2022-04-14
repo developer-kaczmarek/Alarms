@@ -19,5 +19,5 @@ val scheduleModule = module {
 }
 
 fun ComponentFactory.createScheduleComponent(componentContext: ComponentContext): ScheduleComponent {
-    return RealScheduleComponent(componentContext, get(), get(), get())
+    return RealScheduleComponent(componentContext, get(), get(), get(), get())
 }

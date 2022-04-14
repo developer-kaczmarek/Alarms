@@ -6,8 +6,12 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,19 +33,23 @@ fun ReminderUi(
         modifier = modifier.fillMaxSize(),
         color = MaterialTheme.colors.background
     ) {
+        val focusRequester = remember { FocusRequester() }
+        val focusManager = LocalFocusManager.current
         Column(
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(vertical = 20.dp, horizontal = 8.dp)
         ) {
             CommonTextField(
-                component.titleInput,
-                stringResource(id = R.string.schedule_title_hint)
+                modifier = Modifier.focusRequester(focusRequester),
+                inputControl = component.titleInput,
+                label = stringResource(id = R.string.schedule_title_hint)
             )
 
             CommonTextField(
-                component.descriptionInput,
-                stringResource(id = R.string.common_description_hint)
+                modifier = Modifier.focusRequester(focusRequester),
+                inputControl = component.descriptionInput,
+                label = stringResource(id = R.string.common_description_hint)
             )
 
             Text(text = stringResource(id = R.string.reminder_settings_time))
@@ -52,12 +60,18 @@ fun ReminderUi(
             ) {
                 CommonButton(
                     text = stringResource(R.string.reminder_selected_date),
-                    onClick = component::onShowDatePickerDialogClick
+                    onClick = {
+                        focusManager.clearFocus()
+                        component.onShowDatePickerDialogClick()
+                    }
                 )
 
                 CommonButton(
                     text = stringResource(R.string.reminder_selected_time),
-                    onClick = component::onShowTimePickerDialogClick
+                    onClick = {
+                        focusManager.clearFocus()
+                        component.onShowTimePickerDialogClick()
+                    }
                 )
             }
 
@@ -69,16 +83,23 @@ fun ReminderUi(
             ) {
                 CommonButton(
                     text = stringResource(R.string.reminder_set_reminder),
-                    onClick = component::onSetReminderClick,
+                    onClick = {
+                        focusManager.clearFocus()
+                        component.onSetReminderClick()
+                    },
                     enabled = component.setReminderButtonEnabled
                 )
 
                 CommonButton(
                     text = stringResource(R.string.reminder_delete_reminder),
-                    onClick = component::onDeleteReminderClick
+                    onClick = {
+                        focusManager.clearFocus()
+                        component.onDeleteReminderClick()
+                    }
                 )
             }
         }
+
         ShowTimePickerDialog(dialogControl = component.timePickerDialogControl)
         ShowDatePickerDialog(dialogControl = component.datePickerDialogControl)
     }

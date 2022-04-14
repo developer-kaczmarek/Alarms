@@ -14,6 +14,7 @@
     <string name="reminder_reminder_name">Напоминание</string>
     <string name="reminder_selected_date">Выбрать дату</string>
     <string name="reminder_selected_time">Выбрать время</string>
+    <string name="reminder_notification_deleted">Напоминание удалено</string>
 
     <!-- Menu -->
     <string name="menu_set_schedule">Установить расписание</string>
@@ -23,6 +24,7 @@
     <string name="schedule_title_hint">Заголовок расписания</string>
     <string name="schedule_set_schedule">Установить расписание</string>
     <string name="schedule_delete_schedule">Удалить расписание</string>
+    <string name="schedule_notification_deleted">Расписание удалено</string>
 
     <!-- Notification channel -->
     <string name="alarms_channel_id" translatable="false">alarms_channel_id</string>

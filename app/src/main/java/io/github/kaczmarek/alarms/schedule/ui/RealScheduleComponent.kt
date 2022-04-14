@@ -8,16 +8,20 @@ import com.arkivanov.decompose.ComponentContext
 import io.github.kaczmarek.alarms.R
 import io.github.kaczmarek.alarms.core.error_handling.ErrorHandler
 import io.github.kaczmarek.alarms.core.error_handling.safeRun
+import io.github.kaczmarek.alarms.core.message.data.MessageService
+import io.github.kaczmarek.alarms.core.message.domain.MessageData
 import io.github.kaczmarek.alarms.core.utils.componentCoroutineScope
 import io.github.kaczmarek.alarms.schedule.domain.DeleteSchedulesInteractor
 import io.github.kaczmarek.alarms.schedule.domain.SetScheduleInteractor
 import me.aartikov.sesame.compose.form.control.InputControl
 import me.aartikov.sesame.compose.form.validation.control.isNotBlank
 import me.aartikov.sesame.compose.form.validation.form.*
+import me.aartikov.sesame.localizedstring.LocalizedString
 
 class RealScheduleComponent(
     componentContext: ComponentContext,
     private val errorHandler: ErrorHandler,
+    private val messageService: MessageService,
     private val setScheduleInteractor: SetScheduleInteractor,
     private val deleteSchedulesInteractor: DeleteSchedulesInteractor
 ) : ComponentContext by componentContext, ScheduleComponent {
@@ -71,6 +75,9 @@ class RealScheduleComponent(
     override fun onDeleteSchedulesClick() {
         safeRun(errorHandler) {
             deleteSchedulesInteractor.execute()
+            messageService.showMessage(
+                MessageData(text = LocalizedString.resource(R.string.schedule_notification_deleted))
+            )
         }
     }
 }

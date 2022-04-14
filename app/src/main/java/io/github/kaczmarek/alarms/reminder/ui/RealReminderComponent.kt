@@ -9,6 +9,8 @@ import io.github.kaczmarek.alarms.R
 import io.github.kaczmarek.alarms.core.error_handling.ErrorHandler
 import io.github.kaczmarek.alarms.core.error_handling.safeLaunch
 import io.github.kaczmarek.alarms.core.error_handling.safeRun
+import io.github.kaczmarek.alarms.core.message.data.MessageService
+import io.github.kaczmarek.alarms.core.message.domain.MessageData
 import io.github.kaczmarek.alarms.core.utils.componentCoroutineScope
 import io.github.kaczmarek.alarms.core.widget.dialog.DatePickerDialogData
 import io.github.kaczmarek.alarms.core.widget.dialog.DialogResult
@@ -19,12 +21,14 @@ import me.aartikov.sesame.compose.form.control.InputControl
 import me.aartikov.sesame.compose.form.validation.control.isNotBlank
 import me.aartikov.sesame.compose.form.validation.form.*
 import me.aartikov.sesame.dialog.DialogControl
+import me.aartikov.sesame.localizedstring.LocalizedString
 import java.util.*
 import java.util.Calendar.SECOND
 
 class RealReminderComponent(
     componentContext: ComponentContext,
     private val errorHandler: ErrorHandler,
+    private val messageService: MessageService,
     private val setReminderInteractor: SetReminderInteractor,
     private val deleteReminderInteractor: DeleteReminderInteractor
 ) : ComponentContext by componentContext, ReminderComponent {
@@ -86,6 +90,9 @@ class RealReminderComponent(
     override fun onDeleteReminderClick() {
         safeRun(errorHandler) {
             deleteReminderInteractor.execute()
+            messageService.showMessage(
+                MessageData(text = LocalizedString.resource(R.string.reminder_notification_deleted))
+            )
         }
     }
 

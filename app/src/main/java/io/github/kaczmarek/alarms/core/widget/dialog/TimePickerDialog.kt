@@ -33,7 +33,10 @@ fun TimePickerDialogUi(
         data.hourOfDay,
         data.minute,
         true
-    ).show()
+    ).apply {
+        setOnDismissListener { dialogControl.sendResult(DialogResult.Cancel) }
+        show()
+    }
 }
 
 @Composable
@@ -50,7 +53,10 @@ fun DatePickerDialogUi(
         data.year,
         data.month,
         data.dayOfMonth
-    ).show()
+    ).apply {
+        setOnDismissListener { dialogControl.sendResult(DialogResult.Cancel) }
+        show()
+    }
 }
 
 data class DatePickerDialogData(

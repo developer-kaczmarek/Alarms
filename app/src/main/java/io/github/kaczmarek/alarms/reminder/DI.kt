@@ -19,5 +19,5 @@ val reminderModule = module {
 }
 
 fun ComponentFactory.createReminderComponent(componentContext: ComponentContext): ReminderComponent {
-    return RealReminderComponent(componentContext, get(), get(), get())
+    return RealReminderComponent(componentContext, get(), get(), get(), get())
 }
