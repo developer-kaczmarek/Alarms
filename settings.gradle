@@ -60,6 +60,9 @@ dependencyResolutionManagement {
             version('detekt', '1.18.1')
             alias('detekt').to('io.gitlab.arturbosch.detekt', 'detekt-gradle-plugin').versionRef('detekt')
             alias('detekt-formatting').to('io.gitlab.arturbosch.detekt', 'detekt-formatting').versionRef('detekt')
+
+            // Work Manager
+            alias('workManager').to('androidx.work', 'work-runtime-ktx').version('2.7.1')
         }
     }
 }

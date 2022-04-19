@@ -50,26 +50,20 @@ fun ReminderUi(
                 stringResource(id = R.string.reminder_description_hint)
             )
 
-            Text(
-                modifier = Modifier.padding(top = 8.dp),
-                text = stringResource(id = R.string.reminder_set_reminder),
-                textAlign = TextAlign.Center
-            )
-
             Row(
                 modifier = Modifier.fillMaxSize(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 ReminderButton(
-                    text = stringResource(R.string.reminder_work_manager),
-                    onClick = component::onWorkManagerClick,
-                    enabled = component.buttonsEnabled
+                    text = stringResource(R.string.reminder_set_reminder),
+                    onClick = component::onSetReminderClick,
+                    enabled = component.setReminderButtonEnabled
                 )
 
                 ReminderButton(
-                    text = stringResource(R.string.reminder_alarm_manager),
-                    onClick = component::onAlarmManagerClick,
-                    enabled = component.buttonsEnabled
+                    text = stringResource(R.string.reminder_delete_reminders),
+                    onClick = component::onDeleteRemindersClick,
+                    enabled = true
                 )
             }
         }
@@ -173,9 +167,9 @@ class FakeReminderComponent : ReminderComponent {
     override val descriptionInput = InputControl(
         keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words)
     )
-    override val buttonsEnabled: Boolean = false
+    override val setReminderButtonEnabled = false
 
-    override fun onWorkManagerClick() = Unit
+    override fun onDeleteRemindersClick() = Unit
 
-    override fun onAlarmManagerClick() = Unit
+    override fun onSetReminderClick() = Unit
 }

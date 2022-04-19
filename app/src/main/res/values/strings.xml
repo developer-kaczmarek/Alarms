@@ -8,7 +8,11 @@
     <string name="reminder_title_hint">Заголовок напоминания</string>
     <string name="reminder_description_hint">Описание</string>
     <string name="reminder_set_reminder">Установить напоминание</string>
-    <string name="reminder_work_manager">Work Manager</string>
-    <string name="reminder_alarm_manager">Alarm Manager</string>
+    <string name="reminder_delete_reminders">Удалить все напоминания</string>
     <string name="reminder_field_is_blank_error_message">Пожалуйста, заполните это поле</string>
+
+    <!-- Notification channel -->
+    <string name="alarms_channel_id" translatable="false">alarms_channel_id</string>
+    <string name="alarms_channel_name">Канал уведомлений</string>
+    <string name="alarms_channel_description">Показывает напоминание</string>
 </resources>

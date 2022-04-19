@@ -8,9 +8,9 @@ interface ReminderComponent {
 
     val descriptionInput: InputControl
 
-    val buttonsEnabled: Boolean
+    val setReminderButtonEnabled: Boolean
 
-    fun onWorkManagerClick()
+    fun onSetReminderClick()
 
-    fun onAlarmManagerClick()
+    fun onDeleteRemindersClick()
 }
