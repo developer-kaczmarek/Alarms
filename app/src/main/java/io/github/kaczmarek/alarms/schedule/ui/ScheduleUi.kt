@@ -1,10 +1,9 @@
-package io.github.kaczmarek.alarms.reminder.ui
+package io.github.kaczmarek.alarms.schedule.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -20,13 +19,11 @@ import io.github.kaczmarek.alarms.R
 import io.github.kaczmarek.alarms.core.theme.AppTheme
 import io.github.kaczmarek.alarms.core.widget.CommonButton
 import io.github.kaczmarek.alarms.core.widget.CommonTextField
-import io.github.kaczmarek.alarms.core.widget.dialog.*
 import me.aartikov.sesame.compose.form.control.InputControl
-import me.aartikov.sesame.dialog.DialogControl
 
 @Composable
-fun ReminderUi(
-    component: ReminderComponent,
+fun ScheduleUi(
+    component: ScheduleComponent,
     modifier: Modifier = Modifier
 ) {
     Surface(
@@ -43,7 +40,7 @@ fun ReminderUi(
             CommonTextField(
                 modifier = Modifier.focusRequester(focusRequester),
                 inputControl = component.titleInput,
-                label = stringResource(id = R.string.schedule_title_hint)
+                label = stringResource(id = R.string.reminder_title_hint)
             )
 
             CommonTextField(
@@ -52,68 +49,40 @@ fun ReminderUi(
                 label = stringResource(id = R.string.common_description_hint)
             )
 
-            Text(text = stringResource(id = R.string.reminder_settings_time))
-
             Row(
-                modifier = Modifier.fillMaxWidth(),
+                modifier = Modifier.fillMaxSize(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 CommonButton(
-                    text = stringResource(R.string.reminder_selected_date),
+                    text = stringResource(R.string.schedule_set_schedule),
                     onClick = {
                         focusManager.clearFocus()
-                        component.onShowDatePickerDialogClick()
-                    }
-                )
-
-                CommonButton(
-                    text = stringResource(R.string.reminder_selected_time),
-                    onClick = {
-                        focusManager.clearFocus()
-                        component.onShowTimePickerDialogClick()
-                    }
-                )
-            }
-
-            Text(text = stringResource(id = R.string.reminder_reminder_name))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                CommonButton(
-                    text = stringResource(R.string.reminder_set_reminder),
-                    onClick = {
-                        focusManager.clearFocus()
-                        component.onSetReminderClick()
+                        component.onSetScheduleClick()
                     },
-                    enabled = component.setReminderButtonEnabled
+                    enabled = component.setScheduleButtonEnabled
                 )
 
                 CommonButton(
-                    text = stringResource(R.string.reminder_delete_reminder),
+                    text = stringResource(R.string.schedule_delete_schedule),
                     onClick = {
                         focusManager.clearFocus()
-                        component.onDeleteReminderClick()
+                        component.onDeleteSchedulesClick()
                     }
                 )
             }
         }
-
-        ShowTimePickerDialog(dialogControl = component.timePickerDialogControl)
-        ShowDatePickerDialog(dialogControl = component.datePickerDialogControl)
     }
 }
 
 @Preview(showSystemUi = true)
 @Composable
-fun ReminderUiPreview() {
+fun ScheduleUiPreview() {
     AppTheme {
-        ReminderUi(FakeReminderComponent())
+        ScheduleUi(FakeScheduleComponent())
     }
 }
 
-class FakeReminderComponent : ReminderComponent {
+class FakeScheduleComponent : ScheduleComponent {
 
     override val titleInput = InputControl(
         keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words)
@@ -122,17 +91,9 @@ class FakeReminderComponent : ReminderComponent {
     override val descriptionInput = InputControl(
         keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Words)
     )
-    override val setReminderButtonEnabled = false
+    override val setScheduleButtonEnabled = false
 
-    override val timePickerDialogControl = DialogControl<TimePickerDialogData, DialogResult>()
+    override fun onDeleteSchedulesClick() = Unit
 
-    override val datePickerDialogControl = DialogControl<DatePickerDialogData, DialogResult>()
-
-    override fun onSetReminderClick() = Unit
-
-    override fun onDeleteReminderClick() = Unit
-
-    override fun onShowTimePickerDialogClick() = Unit
-
-    override fun onShowDatePickerDialogClick() = Unit
+    override fun onSetScheduleClick() = Unit
 }

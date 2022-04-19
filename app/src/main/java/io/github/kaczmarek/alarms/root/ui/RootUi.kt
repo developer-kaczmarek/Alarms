@@ -13,8 +13,10 @@ import io.github.kaczmarek.alarms.core.message.ui.FakeMessageComponent
 import io.github.kaczmarek.alarms.core.message.ui.MessageUi
 import io.github.kaczmarek.alarms.core.theme.AppTheme
 import io.github.kaczmarek.alarms.core.utils.createFakeRouterState
-import io.github.kaczmarek.alarms.reminder.ui.FakeReminderComponent
+import io.github.kaczmarek.alarms.menu.ui.FakeMenuComponent
+import io.github.kaczmarek.alarms.menu.ui.MenuUi
 import io.github.kaczmarek.alarms.reminder.ui.ReminderUi
+import io.github.kaczmarek.alarms.schedule.ui.ScheduleUi
 
 @Composable
 fun RootUi(
@@ -29,6 +31,8 @@ fun RootUi(
             Box {
                 Children(component.routerState) { child ->
                     when (val instance = child.instance) {
+                        is RootComponent.Child.Menu -> MenuUi(instance.component)
+                        is RootComponent.Child.Schedule -> ScheduleUi(instance.component)
                         is RootComponent.Child.Reminder -> ReminderUi(instance.component)
                     }
                 }
@@ -52,6 +56,6 @@ class FakeRootComponent : RootComponent {
     override val messageComponent = FakeMessageComponent()
 
     override val routerState = createFakeRouterState(
-        RootComponent.Child.Reminder(FakeReminderComponent())
+        RootComponent.Child.Menu(FakeMenuComponent())
     )
 }
